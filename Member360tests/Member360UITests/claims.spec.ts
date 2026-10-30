@@ -1,22 +1,24 @@
 import { test, expect } from '@playwright/test';
+import { memberData }
+from '../../test-data/members.ts';
 
 test(
-    'Verify Outstanding Balance',
+    'Verify Claims Section',
     async ({ page }) => {
 
         await page.goto(
-          'http://10.0.19.45:3360'
+          '/'
         );
 
         await expect(
             page.getByText(
-                'Outstanding balance'
+                'Claims'
             )
         ).toBeVisible();
 
         await expect(
             page.getByText(
-                '$0.00'
+                memberData.claimNumber
             )
         ).toBeVisible();
 

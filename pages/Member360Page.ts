@@ -1,43 +1,29 @@
-import { Page, Locator } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export class Member360Page {
 
-    readonly page: Page;
+    constructor(private page: Page) { }
 
-    readonly searchInput: Locator;
-    readonly searchButton: Locator;
-    readonly clearButton: Locator;
-
-    constructor(page: Page) {
-
-        this.page = page;
-
-        this.searchInput =
-            page.getByPlaceholder('Find a member');
-
-        this.searchButton =
-            page.getByRole('button', { name: 'Search' });
-
-        this.clearButton =
-            page.getByRole('button', { name: 'Clear' });
-    }
-
-    async navigate() {
-
-        await this.page.goto(
-            'http://10.0.19.45:3360'
-        );
+    async open() {
+        await this.page.goto('/');
     }
 
     async searchMember(member: string) {
 
-        await this.searchInput.fill(member);
+        await this.page
+            .getByPlaceholder('Find a member')
+            .fill(member);
 
-        await this.searchButton.click();
+        await this.page
+            .getByRole('button', { name: 'Search' })
+            .click();
     }
 
     async clearSearch() {
 
-        await this.clearButton.click();
+        await this.page
+            .getByRole('button', { name: 'Clear' })
+            .click();
     }
 }
+

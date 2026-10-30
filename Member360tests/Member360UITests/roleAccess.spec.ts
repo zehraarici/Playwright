@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test(
-    'Verify Role Buttons',
+    'Verify available roles',
     async ({ page }) => {
 
         await page.goto(
-            'http://10.0.19.45:3360'
+            '/'
         );
 
         await expect(
@@ -18,6 +18,9 @@ test(
 
         await expect(
             page.getByText('Admin')
+        ).toBeVisible();
+        await expect(
+            page.getByText('Underwriter')
         ).toBeVisible();
 
 });

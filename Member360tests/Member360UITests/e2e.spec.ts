@@ -5,7 +5,7 @@ test(
     async ({ page }) => {
 
         await page.goto(
-            'http://10.0.19.45:3360'
+            '/'
         );
 
         await expect(
